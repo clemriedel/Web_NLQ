@@ -1,12 +1,9 @@
 import os
+import pandas as pd
 import flask.views
-# We'll render HTML templates and access data sent by POST
-# using the request object from flask. Redirect and url_for
-# will be used to redirect the user once the upload is done
-# and send_from_directory will help us to send/show on the
-# browser the file that the user just uploaded
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from werkzeug import secure_filename
+from test import clem_lda
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -15,7 +12,7 @@ app.secret_key = "bacon"
 # This is the path to the upload directory
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 # These are the extension that we are accepting to be uploaded
-app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'csv'])
 
 # For a given file, return whether it's an allowed type or not
 def allowed_file(filename):
@@ -25,9 +22,50 @@ def allowed_file(filename):
 # This route will show a form to perform an AJAX request
 # jQuery is loaded to execute the request and update the
 # value of the operation
-@app.route('/')
+@app.route('/home')
 def index():
     return render_template('indexM.html')
+
+@app.route('/tutorial')
+def tutorial():
+    return render_template('tutorial.html')
+
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
+
+@app.route('/thanks')
+def thanks():
+    return render_template('thanks.html')
+
+@app.route('/education')
+def education():
+    return render_template('education.html')
+
+@app.route('/ds4all_nlq_video')
+def ds4all_nlq_video():
+    return play('ds4all_nlq.mp4')
+
+
+
+
+@app.route('/predict', methods=['POST'])
+def predcit():
+    file_name = request.form['file_name']
+    files = os.listdir('uploads')
+    if file_name not in files:
+        return 'File does not exist'
+
+    a = ('uploads/{}'.format(file_name))
+
+    z = clem_lda(a)
+
+    return str(z) #, str(df.head())
+
+
+
+
+    
 
 
 # Route that will process the file upload
@@ -44,8 +82,10 @@ def upload():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         # Redirect the user to the uploaded_file route, which
         # will basicaly show on the browser the uploaded file
-        return redirect(url_for('uploaded_file',
-                                filename=filename))
+        #return 1
+        #redirect(url_for('uploaded_file', filename=filename))
+        return redirect("/home")
+
 
 # This route is expecting a parameter containing the name
 # of a file. Then it will locate that file on the upload
