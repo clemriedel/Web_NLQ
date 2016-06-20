@@ -6,7 +6,7 @@ from werkzeug import secure_filename
 from test import clem_lda
 
 # Initialize the Flask application
-app = Flask(__name__)
+app = Flask(__name__, static_url_path = "", static_folder='static')
 app.secret_key = "bacon"
 
 # This is the path to the upload directory
@@ -22,7 +22,7 @@ def allowed_file(filename):
 # This route will show a form to perform an AJAX request
 # jQuery is loaded to execute the request and update the
 # value of the operation
-@app.route('/home')
+@app.route('/')
 def index():
     return render_template('indexM.html')
 
@@ -42,9 +42,8 @@ def thanks():
 def education():
     return render_template('education.html')
 
-@app.route('/ds4all_nlq_video')
-def ds4all_nlq_video():
-    return play('ds4all_nlq.mp4')
+
+
 
 
 
@@ -84,7 +83,7 @@ def upload():
         # will basicaly show on the browser the uploaded file
         #return 1
         #redirect(url_for('uploaded_file', filename=filename))
-        return redirect("/home")
+        return redirect("/")
 
 
 # This route is expecting a parameter containing the name
@@ -108,6 +107,7 @@ class View(flask.views.MethodView):
 app.add_url_rule('/', view_func=View.as_view('main'), methods=['GET', 'POST'])
 
 app.debug = True
+app.threaded = True
 app.run()
 
 

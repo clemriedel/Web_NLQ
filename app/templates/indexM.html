@@ -16,7 +16,12 @@
     width: 60%;
     padding: 10px;
 }
+
+.overflow{
+    overflow: hidden;
+}
 </style>
+
 
 
 
@@ -26,6 +31,11 @@
       <a class="navbar-brand" href="#">ds4all</a>
     </div>
     <ul class="nav navbar-nav">
+
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">NLQ<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">DS pipeline</a></li>
+        </ul>
 
 
       
@@ -46,13 +56,21 @@
   </div>
 </nav>
 
+<div class="overflow">
+<img src='SFBanner.jpg' alt="logo" height = 150px> <br>
+</div>
 
   <head>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
           rel="stylesheet">
   </head>
 
+
+
+
+
 <div style="padding-left:15px;">
+<br>
 Welcome to 'Data Science for all' ! Our mission is to empower people by provding a simple and free access to data science. Natural Language Quantification is the first product of ds4all.io, it can find patterns (or topics) describing an activity and quantify how much is being created by the pattern (for instance in the National Science Fundation grants, the topic "Protein" has generated 100 M$...)
 </div>
 
@@ -65,14 +83,11 @@ Welcome to 'Data Science for all' ! Our mission is to empower people by provding
       <hr/>
       <div>
 
-You can simply upload your data, run the algorithm and get your report. Check the <a href="/tutorial">'Tutorial'</a> if you would like more information about how to perform this process. Inspiration and examples of databases (use them and get your first results in seconds) can be found in the <a href="/projects">'Projects'</a>. Click on <a href="/education">'Education'</a> to learn more about data science & get guidance to build your own algorithm from scratch.
+You can simply upload your data, run the algorithm and get your report. Check the <a href="/tutorial">'Tutorial'</a> if you would like more information about how to perform this process. Inspiration and examples of databases (use them and get your first results in seconds) can be found in the <a href="/projects">'Projects'</a>. Click on <a href="/education">'Education'</a> to learn more about data science & get guidance to build your own algorithm from scratch. This short (3 min) video summarizes everything:
+</br></br>
 
-<div class="center">
-<video width="480" height="260" controls>
-  <source src="/ds4all_nlq_video" type="video/mp4">
-Your browser does not support the video tag.
-</video>
-</div>
+<iframe src="https://www.youtube.com/embed/u7jFXDgPso4" width="460" height="259" frameborder="0" allowfullscreen></iframe>
+
 
 
   <body>
@@ -97,11 +112,12 @@ Your browser does not support the video tag.
     <body>
     <div class="container">
       <div class="header">
-        <h3 class="text-muted">Submit your file's name: It will automatically run NLQ and get report!</h3>
+        <h3 class="text-muted">Run NLQ and get results!</h3>
       </div>
       <hr/>
   </body>
-
+Type your file name and click on 'Submit':
+<br><br>
   <body>
     <form action="/predict" method="post">
       <input type="text" name="file_name" />
@@ -111,8 +127,8 @@ Your browser does not support the video tag.
   </body>
 
 
+<br><br>
 
-<br>
 
 
 
