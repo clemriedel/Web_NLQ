@@ -59,7 +59,8 @@ def predcit():
 
     z = clem_lda(a)
 
-    return str(z) #, str(df.head())
+    #return str(z) #, str(df.head())
+    return render_template('prediction.html', topics = z)
 
 
 

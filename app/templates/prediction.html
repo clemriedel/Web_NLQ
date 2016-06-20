@@ -1,0 +1,9 @@
+<html>
+	<body>
+		{% for topic in topics %}
+		<p>{{ topic }}</p>
+		{% endfor %}
+		<br>
+		<img src = {{ url_for('static', filename = 'test_image.png') }}>
+	</body>
+</html>

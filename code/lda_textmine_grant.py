@@ -2,6 +2,9 @@ from __future__ import print_function
 from nltk.stem.porter import PorterStemmer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+import seaborn as sns
+import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import csv
 import numpy as np
@@ -37,13 +40,10 @@ for i in range(len(text)):
     A = [i for i in sentence.split() if i not in stop]
     text_stop.append(' '.join(A))
 
-
-
 tdm = textmining.TermDocumentMatrix()
 
 for i in range(d):
     tdm.add_doc(text_stop[i])
-
 
 # # create a temp variable with doc-term info
 temp = list(tdm.rows(cutoff=1))
@@ -68,8 +68,13 @@ for i, topic_dist in enumerate(topic_word):
 # get results
 topic_word = model.topic_word_ 
 doc_topic = model.doc_topic_
-	
 
+x=np.arange(1, 31, 1)
+y=np.abs(np.random.randn(30))
+
+ax = sns.barplot(x, y, color='Blue')
+ax.set(xlabel='Topics', ylabel='M$')
+sns.plt.show()
 
 
 with open('topic_table.csv', 'w') as f:

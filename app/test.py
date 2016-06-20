@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import csv
 import numpy as np
 import pandas as pd
+import seaborn as sns
 import textmining
 import lda
 import textmining
@@ -65,7 +66,7 @@ def clem_lda(a):
 
 	Topics = []
 
-	model = lda.LDA(n_topics, n_iter=500, random_state=1)
+	model = lda.LDA(n_topics, n_iter=100, random_state=1)
 	model.fit(X)  # model.fit_transform(X) is also available
 	topic_word = model.topic_word_  # model.components_ also works
 	n_top_words = 8
@@ -75,8 +76,15 @@ def clem_lda(a):
 	    print('Topic {}: {}'.format(i+1, ' '.join(topic_words)))
 
 	# get results
-	topic_word = model.topic_word_ 
-	doc_topic = model.doc_topic_
+	# topic_word = model.topic_word_ 
+	# doc_topic = model.doc_topic_
+
+	x=np.arange(1, 31, 1)
+	y=np.abs(np.random.randn(30))
+
+	ax = sns.barplot(x, y, color='Blue')
+	ax.set(xlabel='Topics', ylabel='M$')
+	sns.plt.savefig('static/test_image.png')
 		
 	return Topics
 
